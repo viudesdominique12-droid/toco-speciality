@@ -1203,12 +1203,15 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
     window.__rebindChapters=splitTitles;
     panels.forEach(function(p){
       p.setAttribute('tabindex','0');
+      var wasOpen=false;   // état AVANT l'émulation de survol du tap (mouseenter compat s'intercale entre pointerdown et click)
+      p.addEventListener('pointerdown',function(){ wasOpen=p.classList.contains('open'); });
       p.addEventListener('mouseenter',function(){ open(p); });
       p.addEventListener('focusin',function(){ open(p); });
       p.addEventListener('click',function(){
-        // on the phone a second tap folds the chapter; opening one folds the others
-        if(!matchMedia('(min-width:900px)').matches && p.classList.contains('open')) p.classList.remove('open');
+        // on the phone: one tap opens (folding the others), a second tap folds it
+        if(!matchMedia('(min-width:900px)').matches && wasOpen) p.classList.remove('open');
         else open(p);
+        wasOpen=p.classList.contains('open');
         if(window.ScrollTrigger) setTimeout(function(){ ScrollTrigger.refresh(); },700);
       });
     });
