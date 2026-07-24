@@ -1,0 +1,9 @@
+# fichiers de travail internes du studio (jamais publiés)
+ETAT-PROJET.md
+da.md
+_*.html
+logo.html
+styletile.html
+content/
+assets/incoming/
+.DS_Store
