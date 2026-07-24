@@ -276,6 +276,7 @@ footer .fm.lit{filter:drop-shadow(0 0 18px rgba(233,186,124,.85))}
   width:min(44vw,620px);aspect-ratio:1750/1874;
   background:color-mix(in oklab,var(--ink) 5%,transparent);
   -webkit-mask:url(assets/monogram-clean.svg) center/contain no-repeat;mask:url(assets/monogram-clean.svg) center/contain no-repeat}
+@media(max-width:640px){.menu-sec::before{width:min(72vw,320px);left:50%;right:auto;transform:translate(-50%,-50%)}}  /* téléphone : centré comme un sceau, jamais coupé par le bord */
 .menu-intro{font-family:Fraunces,serif;font-weight:330;font-size:var(--step-2);max-width:22ch;margin:.8rem 0 2.2rem}
 [data-lang="am"] .menu-intro{font-family:"Noto Serif Ethiopic",serif}
 .m-wrap{display:grid;gap:clamp(2.2rem,5vw,5.5rem);align-items:start}
