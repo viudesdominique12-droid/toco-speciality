@@ -343,14 +343,7 @@ footer .fm.lit{filter:drop-shadow(0 0 18px rgba(233,186,124,.85))}
 .tcol--2{--dur:33s}
 .tcol--3{--dur:23s}
 @keyframes tscroll{from{transform:translateY(0)}to{transform:translateY(-50%)}}
-.tcols.paused .tcol{animation-play-state:paused}
 @media(hover:hover) and (pointer:fine){.tcols:hover .tcol{animation-play-state:paused}}
-.rev-pause{font-family:"Space Mono",monospace;font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.6);
-  background:transparent;border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:.35rem .9rem;cursor:pointer;transition:color .3s,border-color .3s}
-.rev-pause:hover,.rev-pause:focus-visible{color:#fff;border-color:rgba(255,255,255,.5)}
-.rev-pause .p2{display:none}
-.rev-pause[aria-pressed="true"] .p1{display:none}
-.rev-pause[aria-pressed="true"] .p2{display:inline}
 @media(max-width:679px){.tcol--2,.tcol--3{display:none}}
 @media(min-width:680px) and (max-width:999px){.tcol--3{display:none}}
 .tcard{flex:0 0 auto;background:rgba(255,255,255,.045);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1.5rem 1.6rem;transition:background .4s var(--ease-move),border-color .4s var(--ease-move),transform .4s cubic-bezier(.2,.7,.2,1)}
@@ -678,7 +671,6 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
       <span class="rev-pill" data-en="Reviews" data-am="ግምገማዎች">Reviews</span>
       <h2 class="rev-title" data-en="What people say" data-am="ሰዎች ምን ይላሉ">What people say</h2>
       <div class="rev-score"><span class="st">★★★★<i>★</i></span> <b>4.3</b> · <span data-en="39 reviews on Google" data-am="39 የጎግል ግምገማዎች">39 reviews on Google</span></div>
-      <button class="rev-pause" id="revPause" type="button" aria-pressed="false"><span class="p1" data-en="Pause" data-am="አቁም">Pause</span><span class="p2" data-en="Play" data-am="አጫውት">Play</span></button>
     </div>
     <div class="wrap tcols" id="tcols">
       <div class="tcol tcol--1" id="tcol1"></div>
@@ -885,12 +877,6 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
     var b=[[],[],[]];
     R.forEach(function(r,i){ b[i%3].push(card(r)); });
     cols.forEach(function(col,i){ var h=b[i].join(''); col.innerHTML=h+'<div class="thalf" aria-hidden="true">'+h+'</div>'; });
-    // WCAG 2.2.2 — the wall can always be paused
-    var pauseBtn=document.getElementById('revPause'), tcols=document.getElementById('tcols');
-    if(pauseBtn&&tcols) pauseBtn.addEventListener('click',function(){
-      var p=tcols.classList.toggle('paused');
-      pauseBtn.setAttribute('aria-pressed',p?'true':'false');
-    });
   })();
 
   /* ---- newsletter: capture UI (no backend yet — wire to a provider later) ---- */
