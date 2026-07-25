@@ -156,6 +156,18 @@ footer .fm.lit{filter:drop-shadow(0 0 18px rgba(233,186,124,.85))}
 .sec-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:1.6rem}
 .sec-head .n{font-family:"Space Mono",monospace;font-size:.72rem;color:var(--muted)}
 
+/* les petites mentions utilitaires sont retirées de la page.
+   Les intitulés de section restent dans le document (ce sont des <h2>) : invisibles à l'œil,
+   toujours lus par les lecteurs d'écran et par les moteurs de recherche. */
+.sec-head,.story-lab{position:absolute;width:1px;height:1px;padding:0;margin:0;
+  overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+.op-hint,.glow-hint,.m-kicker,.rev-pill,.visit > div > .eyebrow{display:none}
+/* on rend au contenu l'air que ces mentions occupaient */
+.story{padding-block:clamp(2.4rem,6vh,4.5rem) clamp(2rem,6vh,4.5rem)}
+.glow-sec{padding-block:clamp(4rem,10vh,7rem)}
+.rev-head{gap:.6rem}
+.glow-foot{justify-content:flex-end}   /* le bouton gardait sa place face à la mention retirée */
+
 
 /* visit */
 .visit{position:relative;isolation:isolate;padding-block:clamp(3rem,8vh,6rem);border-top:1px solid color-mix(in oklab,var(--ink) 10%,transparent);
