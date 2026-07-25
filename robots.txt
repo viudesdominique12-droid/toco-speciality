@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://viudesdominique12-droid.github.io/toco-speciality/sitemap.xml
