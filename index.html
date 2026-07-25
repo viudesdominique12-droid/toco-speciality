@@ -1136,6 +1136,24 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
     var rhead=document.querySelector('.rev-head');
     if(rhead) gsap.from(rhead,{y:24, autoAlpha:0, duration:.9, ease:'power3.out',
       scrollTrigger:{trigger:'.reviews-sec', start:'top 82%'}});
+
+    /* filet de sécurité : si des positions de scroll ont vieilli malgré tout, un bloc pourrait
+       rester invisible alors qu'il est sous les yeux. On le rattrape en douceur. */
+    if('IntersectionObserver' in window){
+      var rescue=new IntersectionObserver(function(entries){
+        entries.forEach(function(en){
+          if(!en.isIntersecting) return;
+          var el=en.target; rescue.unobserve(el);
+          setTimeout(function(){
+            if(parseFloat(getComputedStyle(el).opacity) < 0.05)
+              gsap.to(el,{autoAlpha:1,y:0,duration:.6,ease:'power3.out',overwrite:'auto'});
+          },700);
+        });
+      },{threshold:.2});
+      ['.rev-head','.visit dl','.visit-map'].forEach(function(sel){
+        var el=document.querySelector(sel); if(el) rescue.observe(el);
+      });
+    }
     // the title rises word by word, the score counts itself up — once
     var rTitle=document.querySelector('.rev-title'), rScore=document.querySelector('.rev-score b');
     function splitRevTitle(){
@@ -1418,6 +1436,15 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
     hardRefresh();
     window.addEventListener('load',function(){ requestAnimationFrame(hardRefresh); });
     setTimeout(hardRefresh,2600);   // after the preloader hand-off, once fonts and layout are final
+    /* les fontes et les images arrivées tard décalent la page : les points de déclenchement
+       doivent être recalculés, sinon un bloc plus bas reste caché (bandeau des avis) */
+    if(document.fonts && document.fonts.ready) document.fonts.ready.then(hardRefresh);
+    var reflow=null;
+    document.querySelectorAll('img[loading="lazy"],iframe[loading="lazy"]').forEach(function(m){
+      m.addEventListener('load',function(){
+        clearTimeout(reflow); reflow=setTimeout(hardRefresh,220);
+      },{once:true});
+    });
 
     window.__daySystem=true;
 
