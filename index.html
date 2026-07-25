@@ -164,9 +164,10 @@ footer .fm.lit{filter:drop-shadow(0 0 18px rgba(233,186,124,.85))}
 .op-hint,.glow-hint,.m-kicker,.rev-pill,.visit > div > .eyebrow{display:none}
 /* on rend au contenu l'air que ces mentions occupaient */
 .story{padding-block:clamp(2.4rem,6vh,4.5rem) clamp(2rem,6vh,4.5rem)}
-.glow-sec{padding-block:clamp(4rem,10vh,7rem)}
+.glow-sec{padding-block:clamp(4rem,10vh,7rem);
+  border-top:1px solid color-mix(in oklab,var(--ink) 10%,transparent)}  /* le comptoir suit la carte : deux clairs, il leur faut une frontière */
 .rev-head{gap:.6rem}
-.glow-foot{justify-content:flex-end}   /* le bouton gardait sa place face à la mention retirée */
+.glow-sec .glow-foot{justify-content:flex-end}   /* le bouton gardait sa place face à la mention retirée */
 
 
 /* visit */
@@ -648,24 +649,6 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
     <p class="menu-note">All prices in ETB · excluding VAT &amp; 10% service charge</p>
   </section>
 
-  <!-- VISIT -->
-  <section class="visit wrap sec-dark" id="visit">
-    <div>
-      <span class="eyebrow"><span data-en="Open late" data-am="እስከ ማታ ክፍት">Open late</span></span>
-      <h2 class="disp shiny solid" data-en="Come find the light." data-am="ብርሃኑን ፈልጋችሁ ኑ።">Come find the light.</h2>      <a class="btn" href="https://maps.app.goo.gl/PFzgTQs1JWZBMavx5" target="_blank" rel="noopener"><span data-en="Get directions" data-am="አቅጣጫ ያግኙ">Get directions</span> →</a>
-    </div>
-    <dl>
-      <dt data-en="Where" data-am="የት">Where</dt><dd data-en="Kazanchis, facing Addis Aquarium" data-am="ካዛንቺስ፣ ከአዲስ አኳሪየም ፊት ለፊት">Kazanchis, facing Addis Aquarium</dd>
-      <dt data-en="Hours" data-am="ሰዓት">Hours</dt><dd>08:00 — 22:30</dd>
-      <dt data-en="Call" data-am="ደውሉ">Call</dt><dd><a href="tel:+251990222666">+251 99 022 2666</a></dd>
-      <dt data-en="Follow" data-am="ተከተሉ">Follow</dt><dd><a href="https://www.instagram.com/tocospeciality/" target="_blank" rel="noopener">@tocospeciality</a></dd>
-    </dl>
-    <div class="visit-map">
-      <iframe title="Toco Speciality on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
-        src="https://maps.google.com/maps?q=Toco%20Speciality%2C%20Kazanchis%2C%20Addis%20Ababa&z=16&hl=en&output=embed"></iframe>
-    </div>
-  </section>
-
   <!-- GALLERY — the counter at night: it drifts, you can grab it, the cursor lights the lanterns -->
   <section class="glow-sec" id="glow" aria-label="Evenings at Toco">
     <div class="wrap sec-head"><span class="n">03</span><h2 class="eyebrow" data-en="Lights on" data-am="መብራቶች በርተዋል">Lights on</h2>
@@ -693,6 +676,24 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
       <a href="https://www.google.com/maps/place/Toco+Speciality/@9.0166697,38.7707428,17z/data=!4m8!3m7!1s0x164b85dbd2aaad11:0x6afb72f8a4048524!8m2!3d9.0166697!4d38.7707428!9m1!1b1!16s%2Fg%2F11mzjck_g3?hl=en" target="_blank" rel="noopener"><span data-en="Read all 39 reviews on Google" data-am="ሁሉንም 39 ግምገማዎች በጎግል ያንብቡ">Read all 39 reviews on Google</span> →</a>
     </div>
   </section>
+  <!-- VISIT -->
+  <section class="visit wrap sec-dark" id="visit">
+    <div>
+      <span class="eyebrow"><span data-en="Open late" data-am="እስከ ማታ ክፍት">Open late</span></span>
+      <h2 class="disp shiny solid" data-en="Come find the light." data-am="ብርሃኑን ፈልጋችሁ ኑ።">Come find the light.</h2>      <a class="btn" href="https://maps.app.goo.gl/PFzgTQs1JWZBMavx5" target="_blank" rel="noopener"><span data-en="Get directions" data-am="አቅጣጫ ያግኙ">Get directions</span> →</a>
+    </div>
+    <dl>
+      <dt data-en="Where" data-am="የት">Where</dt><dd data-en="Kazanchis, facing Addis Aquarium" data-am="ካዛንቺስ፣ ከአዲስ አኳሪየም ፊት ለፊት">Kazanchis, facing Addis Aquarium</dd>
+      <dt data-en="Hours" data-am="ሰዓት">Hours</dt><dd>08:00 — 22:30</dd>
+      <dt data-en="Call" data-am="ደውሉ">Call</dt><dd><a href="tel:+251990222666">+251 99 022 2666</a></dd>
+      <dt data-en="Follow" data-am="ተከተሉ">Follow</dt><dd><a href="https://www.instagram.com/tocospeciality/" target="_blank" rel="noopener">@tocospeciality</a></dd>
+    </dl>
+    <div class="visit-map">
+      <iframe title="Toco Speciality on Google Maps" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=Toco%20Speciality%2C%20Kazanchis%2C%20Addis%20Ababa&z=16&hl=en&output=embed"></iframe>
+    </div>
+  </section>
+
 </main>
 
 <footer>
