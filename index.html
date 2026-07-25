@@ -446,7 +446,7 @@ footer .fm.lit{filter:drop-shadow(0 0 18px rgba(233,186,124,.85))}
 footer{position:relative;z-index:1;background:var(--night);color:#fff;text-align:center;padding-block:clamp(3rem,8vh,5.5rem) 2.2rem}
 footer .fm{width:120px;height:130px;margin:0 auto 1.1rem;background:#fff;-webkit-mask:url(assets/monogram-clean.svg) center/contain no-repeat;mask:url(assets/monogram-clean.svg) center/contain no-repeat}
 footer .meta{font-family:"Space Mono",monospace;font-size:.72rem;letter-spacing:.08em;opacity:.62;margin-top:.4rem}
-footer .sig{font-family:"Space Mono",monospace;font-size:.62rem;opacity:.34;margin-top:2rem;letter-spacing:.1em}
+footer .sig{font-family:"Space Mono",monospace;font-size:.62rem;opacity:.55;margin-top:2rem;letter-spacing:.1em}  /* .34 tombait sous le contraste minimum lisible */
 footer a{border-bottom:1px solid rgba(255,255,255,.3)}
 footer a[href^="tel:"]{white-space:nowrap}
 footer .news{max-width:440px;margin:0 auto clamp(2.2rem,5vh,3.4rem)}
@@ -882,11 +882,16 @@ footer .news-ok{font-family:"Space Mono",monospace;font-size:.74rem;letter-spaci
     if(!R.length||!cols[0]) return;
     function e(s){return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');}
     function ini(n){ n=(n||'').trim(); return n?e(n.charAt(0).toUpperCase()):'·'; }
+    /* on ne republie pas le nom de famille des clients : prénom + initiale suffit à créditer */
+    function nom(n){
+      var p=(n||'').trim().split(/\s+/);
+      return p.length<2 ? e(p[0]||'') : e(p[0]+' '+p[p.length-1].charAt(0).toUpperCase()+'.');
+    }
     function card(r){var st='★'.repeat(Math.max(1,Math.min(5,r.r)));
       return '<figure class="tcard"><div class="tc-stars">'+st+'</div>'
         +'<blockquote class="tc-quote">“'+e(r.t)+'”</blockquote>'
         +'<figcaption class="tc-by"><span class="tc-av" aria-hidden="true">'+ini(r.a)+'</span>'
-        +'<span class="tc-meta"><span class="tc-name">'+e(r.a)+'</span><span class="tc-when">'+e(r.w)+'</span></span></figcaption></figure>';}
+        +'<span class="tc-meta"><span class="tc-name">'+nom(r.a)+'</span><span class="tc-when">'+e(r.w)+'</span></span></figcaption></figure>';}
     var b=[[],[],[]];
     R.forEach(function(r,i){ b[i%3].push(card(r)); });
     cols.forEach(function(col,i){ var h=b[i].join(''); col.innerHTML=h+'<div class="thalf" aria-hidden="true">'+h+'</div>'; });
